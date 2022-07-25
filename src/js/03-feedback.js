@@ -24,7 +24,7 @@ function onSubmitClick(evt) {
     const savedData = JSON.parse(localStorage.getItem(FEEDBACK));
     console.log(savedData);
 
-        // evt.target.reset();
+        evt.target.reset();
     localStorage.removeItem(FEEDBACK);
     return savedData;
 }
