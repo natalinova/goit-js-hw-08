@@ -27,14 +27,7 @@ function createGallery(items) {
 </div>`;
     }).join('')
 }
-gallery.addEventListener('click', onItemGalleryClick);
-function onItemGalleryClick(evt) {
-    evt.preventDefault();
-    if (!evt.target.classList.contains("gallery__image")) {
-        return
-    }
+
     var lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250, enableKeyboard: true, docClose:true, loop:true});
     
-     }
-
 console.log(galleryItems);
