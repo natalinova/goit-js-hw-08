@@ -7,14 +7,14 @@ const refs = {
 };
  refs.form.addEventListener('submit', onSubmitClick);
 refs.form.addEventListener('input', throttle(inFormInput, 500));
-window.addEventListener('click', onFormClick)
+// window.addEventListener('click', onFormClick)
 const FEEDBACK = 'feedback-form-state';
 const formInput = {};
 
 
 function inFormInput(evt) {
-    refs.mail = "";
-    refs.textarea =""; 
+    // refs.mail = "";
+    // refs.textarea =""; 
     formInput[evt.target.name] = evt.target.value;
     localStorage.setItem(FEEDBACK, JSON.stringify(formInput))
 
@@ -23,18 +23,15 @@ function inFormInput(evt) {
 function onSubmitClick(evt) {
     const savedData = JSON.parse(localStorage.getItem(FEEDBACK));
     console.log(savedData);
-
         evt.target.reset();
     localStorage.removeItem(FEEDBACK);
     return savedData;
 }
 
-function onFormClick(evt) {
+if (localStorage.getItem(FEEDBACK)) {
     const saveMessage = JSON.parse(localStorage.getItem(FEEDBACK));
-
-    if (saveMessage) {
-        refs.mail.value = saveMessage.email;
-            refs.textarea.value = saveMessage.message
-    
-    }
+    const savedDataMail = saveMessage.email ? saveMessage.email : "";
+    refs.mail.value = savedDataMail;
+    const savedDataMessage = saveMessage.message ? saveMessage.message : "";
+    refs.textarea.value = savedDataMessage;
 }
