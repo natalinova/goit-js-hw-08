@@ -13,14 +13,15 @@ const formInput = {};
 
 
 function inFormInput(evt) {
-    // refs.mail = "";
-    // refs.textarea =""; 
-    formInput[evt.target.name] = evt.target.value;
+  
+
+   formInput[evt.target.name] = evt.target.value;
     localStorage.setItem(FEEDBACK, JSON.stringify(formInput))
 
 }
 
 function onSubmitClick(evt) {
+    
     const savedData = JSON.parse(localStorage.getItem(FEEDBACK));
     console.log(savedData);
         evt.target.reset();
@@ -30,8 +31,10 @@ function onSubmitClick(evt) {
 
 if (localStorage.getItem(FEEDBACK)) {
     const saveMessage = JSON.parse(localStorage.getItem(FEEDBACK));
+    // localStorage.removeItem(FEEDBACK);
     const savedDataMail = saveMessage.email ? saveMessage.email : "";
     refs.mail.value = savedDataMail;
     const savedDataMessage = saveMessage.message ? saveMessage.message : "";
     refs.textarea.value = savedDataMessage;
+   
 }
