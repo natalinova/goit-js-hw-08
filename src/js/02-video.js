@@ -5,11 +5,13 @@ const iframe = document.querySelector('iframe');
 
 player.on('timeupdate', throttle(getTime, 100));
 function getTime(currentTime) {
-    if ("videoplayer-current-time") {
+    // if (localStorage.getItem("videoplayer-current-time")) {
         localStorage.setItem("videoplayer-current-time", currentTime.seconds)
     }
-};
-player.setCurrentTime(localStorage.getItem("videoplayer-current-time"));
-    player.getVideoTitle().then(function(title) {
+// };
+if (localStorage.getItem("videoplayer-current-time")) {
+    player.setCurrentTime(localStorage.getItem("videoplayer-current-time"));
+    player.getVideoTitle().then(function (title) {
         console.log('title:', title);
-    });
+    })
+}
