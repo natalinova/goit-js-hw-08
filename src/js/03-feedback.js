@@ -9,19 +9,16 @@ const refs = {
 refs.form.addEventListener('input', throttle(inFormInput, 500));
 // window.addEventListener('click', onFormClick)
 const FEEDBACK = 'feedback-form-state';
-const formInput = {};
+
+ const formInput = localStorage.getItem(FEEDBACK) ? JSON.parse(localStorage.getItem(FEEDBACK)) : {};
 
 
 function inFormInput(evt) {
-  
-
    formInput[evt.target.name] = evt.target.value;
     localStorage.setItem(FEEDBACK, JSON.stringify(formInput))
 
 }
-
-function onSubmitClick(evt) {
-    
+function onSubmitClick(evt) {  
     const savedData = JSON.parse(localStorage.getItem(FEEDBACK));
     console.log(savedData);
         evt.target.reset();
@@ -31,7 +28,6 @@ function onSubmitClick(evt) {
 
 if (localStorage.getItem(FEEDBACK)) {
     const saveMessage = JSON.parse(localStorage.getItem(FEEDBACK));
-    // localStorage.removeItem(FEEDBACK);
     const savedDataMail = saveMessage.email ? saveMessage.email : "";
     refs.mail.value = savedDataMail;
     const savedDataMessage = saveMessage.message ? saveMessage.message : "";
