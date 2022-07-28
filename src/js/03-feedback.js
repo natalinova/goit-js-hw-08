@@ -20,11 +20,13 @@ function inFormInput(evt) {
 }
 function onSubmitClick(evt) {  
     const savedData = JSON.parse(localStorage.getItem(FEEDBACK));
-    console.log(savedData);
         evt.target.reset();
     localStorage.removeItem(FEEDBACK);
-    return savedData;
+    alert(`email:${savedData.email}, message:${savedData.message} `);
+    console.log(`email:${savedData.email}, message:${savedData.message} `);
 }
+
+
 
 if (localStorage.getItem(FEEDBACK)) {
     const saveMessage = JSON.parse(localStorage.getItem(FEEDBACK));
